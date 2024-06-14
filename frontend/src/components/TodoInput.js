@@ -12,7 +12,7 @@ function TodoInput({ open, onClose, onAddTodo }) {
 
     const handleSubmit = async (event) => {
 
-        event.preventDefault();  //why
+        event.preventDefault();  
         const formData = new FormData(event.currentTarget);
         const formJson = Object.fromEntries(formData.entries());
         const newTodo = {
