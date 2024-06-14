@@ -1,33 +1,34 @@
-HELP.md
-target /
-    !.mvn / wrapper / maven - wrapper.jar
-!** /src/main/**/target /
-!** /src/test/**/target /
+import React from 'react';
+import axios from 'axios';
 
-### STS ###
-    .apt_generated
-    .classpath
-    .factorypath
-    .project
-    .settings
-    .springBeans
-    .sts4 - cache
+function TodoDelete({ open, id }) {
 
-### IntelliJ IDEA ###
-    .idea
-    *.iws
-    *.iml
-    *.ipr
+    const handleDelete = async (id) => {
 
-### NetBeans ###
-    / nbproject / private /
-    /nbbuild/
-    / dist /
-    /nbdist/
-    /.nb - gradle /
-    build /
-!** /src/main/**/build /
-!** /src/test/**/build /
+        try {
 
-### VS Code ###
-    .vscode /
+            await axios.delete('http://localhost:8080/api/delete-todos', {
+                data: JSON.stringify(id),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            id('');
+            alert('Todo deleted successfully!');
+        } catch (error) {
+            console.error('Error deleting todo', error);
+            alert('Failed to delete todo');
+        }
+    }
+
+
+    // return (
+    //     <div className='container'>
+    //         {handleDelete()}
+    //     </div>
+    // )
+
+    return null;
+}
+
+export default TodoDelete

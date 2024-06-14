@@ -8,11 +8,11 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import axios from 'axios';
 
-function TodoInput({ open, onClose, onAddTodo }) {
+function TodoInput({ open, onClose }) {
 
     const handleSubmit = async (event) => {
 
-        event.preventDefault();  
+        event.preventDefault();
         const formData = new FormData(event.currentTarget);
         const formJson = Object.fromEntries(formData.entries());
         const newTodo = {
@@ -22,12 +22,10 @@ function TodoInput({ open, onClose, onAddTodo }) {
 
         try {
             const response = await axios.post("http://localhost:8080/api/add-todos", newTodo);
-            onAddTodo(response.data);
         } catch (error) {
             console.error("Error adding todo", error);
         }
 
-        // onAddTodo(newTodo);
         onClose();
     }
 
